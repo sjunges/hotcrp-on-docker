@@ -12,7 +12,7 @@
 3. Rename `.env.default` to `.env` and edit the file as you wish (in particular set up the SMTP connection information: host, user and password)
 4. start docker-compose
   ```
-  docker-compose up -d
+  docker compose up -d
   ```
 5. Initialize the database (or use a backup)
   ```
