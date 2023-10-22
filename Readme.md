@@ -1,12 +1,11 @@
-
-
+# HotCRP on Docker
 
 1. clone this repository
   ```
-    git clone https://github.com/Bramas/hotcrp-docker-compose
-    cd hotcrp-docker-compose
+    git clone https://github.com/sjunges/hotcrp-on-docker
+    cd hotcrp-on-docker
   ```
-2. clone hotcrp repository 
+2. clone hotcrp repository into app directory
   ```
     git clone https://github.com/kohler/hotcrp app
   ```
@@ -47,30 +46,19 @@ To restore:
 docker-compose exec -T mysql mysql -uhotcrp -photcrppwd hotcrp < backup.sql
 ```
 
-### Backup to S3
-configure aws cli with your credentials:
-```
-docker run --rm -it -v aws:/root/.aws -v $(pwd):/aws amazon/aws-cli configure
-```
-
-then run the following when you want to do a backup:
-```
-sh s3-backup.sh
-```
-
-
 
 ## Update Hotcrp
-As said in the hotcrp readme, you can update your hotcrp installation just by running `git pull` inside the app folder.
+You can update your hotcrp installation just by running `git pull` inside the app folder. See the hotcrp readme for more info.
 
 
-## Open bash terminal inside a container
+## Open bash terminal inside a one of the containers
 
+#### Webserver
 ```
 docker-compose exec php /bin/bash
 ```
 
-
+#### Database
 ```
 docker-compose exec mysql /bin/bash
 ```
