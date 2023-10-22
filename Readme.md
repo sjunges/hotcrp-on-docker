@@ -1,5 +1,8 @@
 # HotCRP on Docker
 
+This repository contains scripts and a guide to install docker containers for a hotcrp installation. It is baed on https://github.com/Bramas/hotcrp-docker-compose/ with only documentation updates so far. 
+
+##
 1. clone this repository
   ```
     git clone https://github.com/sjunges/hotcrp-on-docker
@@ -26,8 +29,11 @@
   ```
   cp hotcrp-options.php app/conf/options.php
   ```
-7. Open `localhost:9001`
-
+7. Open `localhost:9001` in a webbrowser and add your account.
+8. At the bottom of the page, send account information to your account. You should receive an email. If not, check the log of the mail server:
+```
+docker compose exec smtp /bin/ls /var/log/maillog
+```
 
 ## More options
 
@@ -57,13 +63,43 @@ You can update your hotcrp installation just by running `git pull` inside the ap
 
 ## Open bash terminal inside a one of the containers
 
-#### Webserver
+### Mail server
+
+#### Checking mail log
+```
+docker compose exec smtp /bin/ls /var/log/maillog 
+```
+
+### Phpserver
 ```
 docker-compose exec php /bin/bash
 ```
 
-#### Database
+### Database
 ```
 docker-compose exec mysql /bin/bash
 ```
 particularly useful if you want to run mysql cli `mysql -proot`
+
+## On setting up SMTP
+
+### Google Mail
+At the time of writing, google mail accepts external SMTP usage. However, this does not work with the standard password. Instead, you have to make an app password. 
+
+Other settings:
+```
+Mandatory: Server address of the SMTP server to use.
+SMTP_SERVER=smtp.gmail.com
+
+# Optional: (Default value: 587) Port address of the SMTP server to use.
+SMTP_PORT=587
+
+# Mandatory: Username to authenticate with.
+SMTP_USERNAME=<YOURACCOUNT>@gmail.com
+
+# Mandatory: Password of the SMTP user.
+SMTP_PASSWORD=<YOUR APP PASSOWRD>
+
+# Mandatory: Server hostname for the Postfix container. Emails will appear to come from the hostname's domain.
+SERVER_HOSTNAME=gmail.com
+```
