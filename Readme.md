@@ -2,7 +2,9 @@
 
 This repository contains scripts and a guide to install docker containers for a hotcrp installation. It is baed on https://github.com/Bramas/hotcrp-docker-compose/ with only documentation updates so far. 
 
-##
+## Getting started
+0. Ensure you have [Docker compose, version 2](https://docs.docker.com/compose/release-notes/), which is shipped with, e.g., recent versions of Docker Desktop. 
+
 1. clone this repository
   ```
     git clone https://github.com/sjunges/hotcrp-on-docker
