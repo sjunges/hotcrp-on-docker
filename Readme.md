@@ -27,7 +27,7 @@ This repository contains scripts and a guide to install docker containers for a 
   ```
   docker compose exec mysql  /bin/sh -c "echo 'ok\nhotcrp\nhotcrppwd\nn\nY\n' | sh /srv/www/api/lib/createdb.sh --user=root --password=root"
   ```
-6. Copy the default hotcrp configuration
+6. Copy the default hotcrp configuration (be mindful about access rights)
   ```
   cp hotcrp-options.php app/conf/options.php
   ```
